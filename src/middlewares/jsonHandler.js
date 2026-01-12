@@ -7,7 +7,6 @@ export async function jsonHandler(request, response) {
 
   try {
     request.body = JSON.parse(Buffer.concat(buffers).toString())
-    console.log(request.body)
   } catch (error) {
     request.body = null
   }
