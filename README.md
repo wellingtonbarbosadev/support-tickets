@@ -10,9 +10,9 @@ Sistema de gerenciamento de tickets de suporte que permite criar, listar, atuali
 
 - ✅ Criar novos tickets de suporte
 - 📋 Listar todos os tickets
-- 🔍 Filtrar tickets por equipamento, descrição ou nome do usuário
+- 🔍 Filtrar tickets por status (open/closed)
 - ✏️ Atualizar informações de um ticket
-- 🔒 Fechar tickets específicos
+- 🔒 Fechar tickets específicos com solução
 - 🗑️ Deletar tickets
 
 ## 🚀 Tecnologias
@@ -106,11 +106,10 @@ Content-Type: application/json
 GET /tickets
 ```
 
-**Com filtros (query params):**
+**Com filtro por status:**
 ```http
-GET /tickets?equipment=notebook
-GET /tickets?user_name=joão
-GET /tickets?description=tela
+GET /tickets?status=open
+GET /tickets?status=closed
 ```
 
 **Resposta (200 OK):**
