@@ -206,4 +206,4 @@ Este projeto foi desenvolvido como parte do curso da RocketSeat.
 
 ---
 
-Desenvolvido com 💜 por Wellington Wesley
+Desenvolvido com 💜 por Wellington Barbosa
