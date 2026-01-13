@@ -3,12 +3,11 @@ export function update({ request, response, database }) {
   if (!request.body) {
     return response.writeHead(403).end();
   }
-  const { equipment, description, status } = request.body;
+  const { equipment, description } = request.body;
 
   database.update("tickets", id , {
     equipment,
     description,
-    status,
     updated_at: new Date()
   })
 
