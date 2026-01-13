@@ -1,4 +1,6 @@
 import fs from "node:fs/promises";
+import { deleteTicket } from "../controllers/tickets/delete.js";
+import { tickets } from "../routes/tickets.js";
 
 const DATABASE_PATH = new URL("db.json", import.meta.url);
 
@@ -43,7 +45,11 @@ export class Database {
   }
 
   update(table, id, data) {
-    const rowIndex = this.#database[table].findIndex(( row ) => row.id === id)
+    if (!this.#database[table]) {
+      return
+    }
+    
+    const rowIndex = this.#database[table].findIndex(( row ) => row && row.id === id)
 
     if(rowIndex > -1) {
       this.#database[table][rowIndex] = {
@@ -53,5 +59,21 @@ export class Database {
 
       this.#persist()
     }
+  }
+
+  deleteTicket(table, id) {
+    if (!this.#database[table]) {
+      return false
+    }
+    
+    const rowIndex = this.#database[table].findIndex(( row ) => row && row.id === id)
+
+    if(rowIndex > -1) {
+      this.#database[table].splice(rowIndex, 1)
+      this.#persist()
+      return true
+    }
+    
+    return false
   }
 }
