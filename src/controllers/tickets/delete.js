@@ -4,7 +4,7 @@ export function deleteTicket({ request, response, database }) {
   const deleted = database.deleteTicket("tickets", id)
 
   if (deleted) 
-    return response.end("Deleted successful")
+    return response.end("Deleted successfully")
   else 
     return response.writeHeader(403).end("Wrong ID")
 }

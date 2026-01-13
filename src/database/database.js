@@ -58,7 +58,9 @@ export class Database {
       }
 
       this.#persist()
+      return true
     }
+    return false
   }
 
   deleteTicket(table, id) {
