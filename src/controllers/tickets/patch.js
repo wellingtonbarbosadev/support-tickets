@@ -1,10 +1,15 @@
 export function patch({ request, response, database }) {
-  const { id } = request.params
+  const { id } = request.params;
+  const { solution } = request.body || {};
 
-  const patched = database.update("tickets", id, { status: "closed" })
+  const updateData = { status: "closed" };
 
-  if (patched) 
-    return response.end("Ticket closed successfully")
-  else 
-    return response.writeHeader(403).end("Wrong ID")
+  if (solution) {
+    updateData.solution = solution;
+  }
+
+  const patched = database.update("tickets", id, updateData);
+
+  if (patched) return response.end("Ticket closed successfully");
+  else return response.writeHeader(404).end("Wrong ID");
 }
